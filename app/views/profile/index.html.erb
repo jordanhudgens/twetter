@@ -1,0 +1,6 @@
+<h1><%= @twets %></h1>
+<p><%= @printable_id %></p>
+
+<% @twets.each do |twet| %>
+    <p><%= twet.content %></p>
+<% end %>
