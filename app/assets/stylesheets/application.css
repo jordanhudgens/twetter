@@ -12,3 +12,15 @@
  *= require bootstrap
  *= require_tree .
  */
+
+.posts {
+    width:500px;
+    height:100px;
+    margin:10px;
+    background-color:white;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    float:right;
+    padding:20px;
+}

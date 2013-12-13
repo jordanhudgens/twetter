@@ -1,6 +1,21 @@
-<h1><%= @twets %></h1>
-<p><%= @printable_id %></p>
+<div class="clearfix top-space small"></div>
+    <div class="row">
+        <%= render :partial => 'shared/profile_sidebar' %>
 
-<% @twets.each do |twet| %>
-    <p><%= twet.content %></p>
-<% end %>
+        <div class="panel panel-default col-md-8 text-left">
+            <div class="pull-left">
+                <h4>Twets</h4>
+            </div>
+            <div class="clearfix"></div>
+            <hr />
+            <ol class="list-unstyled">
+                <% @profile.twets.each do |twet| -%>
+                    <li>
+                    <%= twet.content %>
+                    <div class="clearfix"></div>
+                    </li>
+                    <li><hr></li>
+                <% end -%>
+            </ol>
+        </div>
+    </div>

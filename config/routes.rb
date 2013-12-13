@@ -7,7 +7,7 @@ Twetter::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   authenticated :user do
-    resources :follows, :except => [:new, :edit, :show, :update]
+    resources :follows, :except => [:new, :edit, :show, :update], :path => "f/follows"
     resources :twets, :except => [:new, :edit, :show, :update], :path => "feed/twets"
     root :to => 'follows#index', :as => :user_root
   end
