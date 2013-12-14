@@ -15,7 +15,7 @@
       <span class='text-muted pad-10 text-middle'><%= link_to "@"+twet.user.username, '/'+twet.user.username %></strong></span>
         <%= content_tag :small, twet.created_at.strftime("%b %-d"), :class => 'text-muted text-middle pull-right' %>
         <div class="clearfix"></div>
-        <%= content_tag :p, twet.content %>
+        <%= content_tag :p, twet.content.gsub(/(^@\w*)|(@\w*)/, link_to('@'+twet.user.username, '/'+twet.user.username)).html_safe %>
       </li>
       <li><hr></li>
       <% end -%>
