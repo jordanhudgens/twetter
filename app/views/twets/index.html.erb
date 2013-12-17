@@ -13,14 +13,41 @@
       <% @twets.each do |twet| -%>
       <li>
       <%= content_tag :strong, twet.user.name, :class => 'pull-left text-middle' %>
-      <span class='text-muted pad-10 text-middle'><%= link_to "@"+twet.user.username, '/'+twet.user.username %></strong></span>
+      <span class='text-muted pad-10 text-middle'><%= link_to "@"+twet.user.username, '/'+twet.user.username %></span>
+
         <%= content_tag :small, twet.created_at.strftime("%b %-d"), :class => 'text-muted text-middle pull-right' %>
         <div class="clearfix"></div>
-        <%= content_tag :p, twet.content.gsub(/^@(?<username>(\w*))|@(?<username>(\w*))/, '<a href="../'+'\k<username>'+'">@\k<username></a>').html_safe %>
+        <button href="#editTaskList" class="btn btn-default btn-xs middle pull-right" data-toggle="modal" data-target="#myModal">
+            Retweet
+        </button>
+
+        <%= content_tag :p, twet.content.gsub(/(\s|^)@(?<username>(\w*))/, '<a href="../'+'\k<username>'+'"> @\k<username></a>').html_safe %>
       </li>
       <li><hr></li>
       <% end -%>
     </ol>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Retweet</h4>
+            </div>
+            <div class="modal-body">
+                <% @twets.each do |twet| -%>
+                    <%= content_tag :strong, twet.user.name, :class => 'pull-left text-middle' %>
+                <% end -%>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
