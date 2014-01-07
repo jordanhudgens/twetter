@@ -48,7 +48,6 @@
                 <h4 class="modal-title" id="myModalLabel">Retweet post from <span id="modal-user-name"></span></h4>
             </div>
             <%= form_for (@twet || :twet), :url => twets_path,
-                                            :builder => InlineErrorsBuilder,
                                             :method => :POST,
                                             :role => :form do |f| %>
             <div class="modal-body" id="modal-body-content">
@@ -56,6 +55,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+                <%= f.hidden_field :twet_id, :id =>'retwet_id' %>
                 <%= f.submit "Retweet", :class => "btn btn-primary" %>
                 <% end %>
             </div>
@@ -70,12 +70,13 @@
         // clear modal of last append
         $("#modal-body-content").empty();
         var modalUser = $.trim($(this).parent().find(".twet-user" ).text());
-        var modalUserId = $.trim($(this).parent().find(".twet-user-id" ).text());
         var modalTwetId = $.trim($(this).parent().find(".twet-id" ).text());
 
         // get nearest twet-content div, clone, and append to the modal div
         $(this).parent().find(".twet-content" ).clone().appendTo( "#modal-body-content" );
-        modalUser.append( "#modal-user-name" ).text();
+        $("#modal-user-name").text(modalUser);
+        $('#retwet_id').val(modalTwetId);
+        console.log(modalTwetId);
       })
   });
 </script>

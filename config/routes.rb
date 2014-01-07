@@ -1,4 +1,6 @@
 Twetter::Application.routes.draw do
+  get "retwets/new"
+  get "retwets/index"
   # get "profile/index"
   get "/:username", to: 'profile#index', as: 'profile'
 
