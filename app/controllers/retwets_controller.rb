@@ -1,9 +1,9 @@
 class RetwetsController < ApplicationController
-  def new
-      @retwet = current_user.twets.new(retwet_params)
+  def create
+      @retwet = current_user.twets.create(retwet_params)
       if @retwet.valid?
           flash[:success] = "Your Retwet has been published"
-          redirect_to :action => :index and return
+          redirect_to twets_path and return
       else
           flash[:error] = "Your retwet could not be shared"
           render :action => :index and return
@@ -16,7 +16,7 @@ class RetwetsController < ApplicationController
   private
 
   def retwet_params
-      params.require(:retwet_id).permit(:content)
+      params.require(:retwet).permit(:retwet_id, :content)
   end
 
 end

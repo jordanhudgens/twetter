@@ -50,8 +50,9 @@
             <%= form_for (@retwet || :retwet), :url => retwets_path,
                                             :method => :POST,
                                             :role => :form do |f| %>
-            <div class="modal-body" id="modal-body-content">
                 <%= f.hidden_field :retwet_id, :id =>'retwet_id' %>
+                <%= f.hidden_field :content, :id =>'content' %>
+            <div class="modal-body" id="modal-body-content">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
@@ -70,11 +71,14 @@
         $("#modal-body-content").empty();
         var modalUser = $.trim($(this).parent().find(".twet-user" ).text());
         var modalTwetId = $.trim($(this).parent().find(".twet-id" ).text());
+        var content_to_pass = $.trim($(this).parent().find(".twet-content" ).text());
+
 
         // get nearest twet-content div, clone, and append to the modal div
         $(this).parent().find(".twet-content" ).clone().appendTo( "#modal-body-content" );
         $("#modal-user-name").text(modalUser);
         $('#retwet_id').val(modalTwetId);
+        $('#content').val(content_to_pass);
         console.log(modalTwetId);
       })
   });

@@ -9,7 +9,7 @@ Twetter::Application.routes.draw do
   authenticated :user do
     resources :follows, :except => [:new, :edit, :show, :update], :path => "f/follows"
     resources :twets, :except => [:new, :edit, :show, :update], :path => "feed/twets"
-    resources :retwets, :only => [:new]
+    resources :retwets, :only => [:create]
     root :to => 'follows#index', :as => :user_root
   end
 
